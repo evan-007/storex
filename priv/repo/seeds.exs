@@ -31,7 +31,7 @@ books = [
   %{
     title: "My forth book",
     description: "my forth story",
-    price: "15.90",
+    price: "16.90",
     image_url: "http://www.phoenixforrailsdevelopers.com/books/4.png",
   },
 ]
