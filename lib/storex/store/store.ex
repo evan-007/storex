@@ -9,4 +9,10 @@ defmodule Storex.Store do
   def get_book(id) do
     Repo.get(Book, id)
   end
+
+  def create_book(attrs \\ %Book{}) do
+    %Book{}
+    |> Book.changeset(attrs)
+    |> Repo.insert()
+  end
 end
