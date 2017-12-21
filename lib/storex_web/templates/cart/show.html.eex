@@ -30,7 +30,7 @@
         <div class="value-tag">
           <h2 class="value-tag__title">price</h2>
           <span class="value-tag__content">
-            <%= item.book.price %>
+            <%= format_price(item.book.price) %>
           </span>
         </div>
       </div>
@@ -40,5 +40,5 @@
 
 <div class="value­tag">
   <h2 class="value­tag__title">total</h2>
-  <span class="value­tag__content"><%= @total %></span>
+  <span class="value­tag__content"><%= format_price(@total) %></span>
 </div>
