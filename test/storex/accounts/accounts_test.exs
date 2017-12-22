@@ -45,9 +45,23 @@ defmodule Storex.AccountsTest do
     end
 
     test "authenticate_user/2 returns a user when email and password match" do
-      user = Accounts.create_user(@valid_attrs)
+      Accounts.create_user(@valid_attrs)
 
-      assert user == Accounts.authenticate_user(@valid_attrs.email, @valid_attrs.password)
+      assert {:ok, %User{}} =
+        Accounts.authenticate_user(@valid_attrs.email, @valid_attrs.password)
+    end
+
+    test "authenticate_user/2 returns an aerror when email is not found" do
+      Accounts.create_user(@valid_attrs)
+
+      assert {:error, "invalid user-identifier"} =
+        Accounts.authenticate_user("invalid@asdf.com", @valid_attrs.password)
+    end
+    test "authenticate_user/2 returns an error when password doesn't match" do
+      Accounts.create_user(@valid_attrs)
+
+      assert {:error, "invalid password"} =
+        Accounts.authenticate_user(@valid_attrs.email, "invalidpw")
     end
   end
 end

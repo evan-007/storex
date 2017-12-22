@@ -18,9 +18,7 @@ defmodule Storex.Accounts do
   end
 
   def authenticate_user(email, password) do
-    %User{}
-    |> where(email: ^email)
-    |> where(password: ^password)
-    |> Repo.get_one()
+    Repo.get_by(User, email: email)
+    |> User.check_password(password)
   end
 end

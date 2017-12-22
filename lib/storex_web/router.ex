@@ -10,6 +10,7 @@ defmodule StorexWeb.Router do
     plug StorexWeb.Plugs.Cart
     plug StorexWeb.Plugs.ItemsCount
     plug StorexWeb.Plugs.ItemsTotalPrice
+    plug StorexWeb.Plugs.CurrentUser
   end
 
   pipeline :api do
@@ -22,6 +23,8 @@ defmodule StorexWeb.Router do
     get "/", BookController, :index
     get "/books/:id", BookController, :show
     resources "/carts", CartController, singleton: true, only: [:show, :create, :delete]
+    resources "/users", UserController, only: [:new, :create]
+    resources "/sessions", SessionController, singleton: true, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
